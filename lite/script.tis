@@ -20,11 +20,21 @@ $(#x) << event click {
 }
 
 $(#dropzone) << event click {
-  const filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg,*.jpeg)|*.jpg;*jpeg|SVG Files (*.svg)|*.svg|GIF Files (*.gif)|*.gif";
+  if (this.attributes.hasClass("is--processing")) return;
+  const filter = [
+    "Image Files (*.png,*.jpg,*.jpeg,*.svg,*.gif)|*.png;*.jpg;*.jpeg;*.svg;*.gif",
+    "PNG Files (*.png)|*.png",
+    "JPG Files (*.jpg,*.jpeg)|*.jpg;*jpeg",
+    "SVG Files (*.svg)|*.svg",
+    "GIF Files (*.gif)|*.gif"
+  ].join("|");
   var filename = view.selectFile(#open, filter);
   if (! filename) return;
+  const ext = filename %~ ".";
+  if (ext != "png") return view.msgbox(#error, "Only PNG images are supported at this time.", "Image Shrinker Lite");
   filename = filename.replace("file://", "");
-  view.compressPNG(filename, function (result) {
-    stdout.println(result);
+  this.attributes.addClass("is--processing");
+  view.compressPNG(filename, (result) => {
+    this.attributes.removeClass("is--processing");
   }); 
 }

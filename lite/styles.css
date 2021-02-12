@@ -116,7 +116,6 @@ body {
   width: calc(100vw - 54dip);
   border: 2dip dashed #111;
   color: #111;
-  cursor: pointer;
   opacity: .5;
   padding: 16dip;
   text-align: center;
@@ -125,11 +124,15 @@ body {
   font-size: 16dip;
 }
 
+#dropzone:not(.is--processing) {
+  cursor: pointer;
+}
+
 #dropzone.active-target {
   opacity: 0.9;
 }
 
-#dropzone:hover {
+#dropzone:hover:not(.is--processing) {
   opacity: .75;
 }
 
