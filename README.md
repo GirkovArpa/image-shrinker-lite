@@ -4,8 +4,8 @@
 
 Image Shrinker Lite is a tool to minify images and graphics. Built with web technologies in [Sciter](https://sciter.com), it is intended to be a lightweight clone of the original [Image Shrinker](https://github.com/stefansl/image-shrinker) for Windows and Linux in addition to Mac.
 
-<h1 style="text-align: center;">
-  <img src="lite/preview.png" />
+<h1 align="center">
+<img src="lite/preview.png" alt="screenshot" width="280"/></a><br/><br/>
 </h1>
 
 ## How to use
