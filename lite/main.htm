@@ -9,10 +9,15 @@
     <link href="assets/css/x.css" rel="stylesheet">
     <script src="script.tis" type="text/tiscript"></script>
     <script src="assets/tis/moveable_view.tis" type="text/tiscript"></script>
+    <script src="assets/tis/drag_and_drop.tis" type="text/tiscript"></script>
   </head>
 
   <body>
-    <div #dragzone></div>
+    <div #draggable-caption>
+      <div .caption-button role="window-close"></div>
+      <div .caption-button role="window-minimize"></div>
+      <div .caption-button role="window-maximize"></div>
+    </div>
     <div #bg>
       <include src="assets/svg/bg.svg" media="sciter" />
     </div>

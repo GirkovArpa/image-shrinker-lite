@@ -8,7 +8,7 @@ function self.ready() {
   view.move((sw / 2) - (w / 2), (sh / 2) - (h / 2), w, h, false);
   view.windowResizable = true;
   view.windowMaximizable = false;
-  movableView("#dragzone");
+  movableView("#draggable-caption");
 }
 
 $(#ellipses) << event click {
@@ -18,3 +18,4 @@ $(#ellipses) << event click {
 $(#x) << event click {
   $(#settings).attributes.toggleClass("open");
 }
+

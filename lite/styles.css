@@ -41,6 +41,46 @@ body {
   overflow: hidden;
 }
 
+#draggable-caption {
+  cursor: move;
+  width: 100vw;
+  height: 40dip;
+  z-index: 1200;
+  float: left;
+  position: relative;
+  flow: horizontal;
+  border-spacing: 10dip;
+  vertical-align: middle;
+  padding-left: 12dip;
+}
+
+.caption-button {
+  size: 12dip;
+  border-radius: 50%;
+  z-index: 9999;
+  filter: brightness(0%);
+  transition: filter 450ms blend;
+  behavior: clickable;
+  cursor: pointer;
+  hit-margin: 5dip;
+}
+
+.caption-button:hover {
+  filter: brightness(10%);
+}
+
+[role=window-maximize] {
+  background-color: #24D800;
+}
+
+[role=window-minimize] {
+  background-color: #F9CF6B;
+}
+
+[role=window-close] {
+  background-color: #F94F4F;
+}
+
 #bg {
   position: relative;
   float: left;
@@ -66,8 +106,9 @@ body {
 }
 
 #dropzone {
+  prototype: FileDropZone;
   position: relative;
-  z-index: 100;
+  z-index: 1;
   margin: 40dip 10dip;
   height: 72dip;
   width: calc(100vw - 54dip);
@@ -82,8 +123,41 @@ body {
   font-size: 16dip;
 }
 
+#dropzone.active-target {
+  opacity: 0.9;
+}
+
 #dropzone:hover {
   opacity: .75;
+}
+
+#dropzone.is--processing::marker {
+  background-image: url(assets/svg/tail_spin.svg);
+  size: calc(72dip / 2);
+  margin: *;
+  animation: spin .9s linear infinite;
+  z-index: 1;
+}
+
+#dropzone.is--processing::shade {
+  background-color: rgba(216, 101, 80, 0.5);
+  width: 318dip;
+  height: 104dip;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #dropzone>h1 {
@@ -104,15 +178,6 @@ body {
   text-align: center;
   font-weight: normal;
   line-height: 24dip;
-}
-
-#dragzone {
-  cursor: move;
-  width: 100vw;
-  height: 40dip;
-  z-index: 1200;
-  float: left;
-  position: relative;
 }
 
 #ellipses {
