@@ -10,5 +10,3 @@ function self.ready() {
   view.windowMaximizable = false;
   movableView("#dragzone");
 }
-
-//$(span).html = $(span).text.replace(/ /g, "&#8198;&#8198;");

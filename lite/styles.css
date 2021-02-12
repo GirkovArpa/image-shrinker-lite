@@ -42,7 +42,7 @@ body {
   z-index: -99;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 40vh;
   transform: scale(1.1);
   width: 100vw;
   text-align: center;
@@ -74,7 +74,6 @@ body {
   text-align: center;
   transition: opacity .1s quad-in-out;
   line-height: 24dip;
-
   font-size: 16dip;
 }
 
@@ -109,4 +108,23 @@ body {
   z-index: 200;
   float: left;
   position: relative;
+}
+
+#ellipses {
+  size: 32dip;
+  background-color: transparent;
+  position: absolute;
+  bottom: 20dip;
+  right: 20dip;
+  cursor: pointer;
+  font-size: 28ip;
+  flow: horizontal;
+  text-align: center;
+  vertical-align: middle;
+  border-spacing: *;
+  color: rgb(17, 17, 17);
+}
+
+#ellipses:hover {
+  opacity: 0.5;
 }
