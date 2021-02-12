@@ -10,10 +10,27 @@ use std::io::Read;
 use std::os::raw::c_uchar;
 use std::path::Path;
 
+use std::{thread, time};
+
 struct EventHandler {}
+impl EventHandler {
+	fn compressPNG(&self, filename: sciter::Value, callback: sciter::Value) -> () {
+		println!("Compressing {} ...", filename);
+		thread::spawn(move || {
+			let outcome = compress_file();
+			callback.call(None, &make_args!(outcome), None).unwrap();
+		});
+	}
+}
+
 impl sciter::EventHandler for EventHandler {
-	fn document_complete(&mut self, root: HELEMENT, target: HELEMENT) {
-		&Element::from(root).call_function("foo", &make_args!("Proceeding to compress image ..."));
+	dispatch_script_call! {
+		fn compressPNG(Value, Value);
+	}
+}
+
+fn compress_file() -> String {
+		//&Element::from(root).call_function("foo", &make_args!("Proceeding to compress image ..."));
 		let filename = Path::new("sciter.png");
 		if !filename.is_file() {
         panic!("Invalid filename");
@@ -51,22 +68,16 @@ impl sciter::EventHandler for EventHandler {
 
     state
         .encode_file(output_filename, &pixels, width, height)
-        .unwrap();
+				.unwrap();
+				
+		"Compression complete.".to_string()
 	}
-	fn on_script_call(&mut self, root: HELEMENT, caller_function: &str, argv: &[Value]) -> Option<Value> {
-		let _func = argv.first().unwrap().as_string().unwrap();
-		let func = _func.as_str();
-		&Element::from(root).call_function(func, argv);
-		None
-	}
-}
 fn main() {
 	sciter::set_options(sciter::RuntimeOptions::ScriptFeatures(
     sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_SYSINFO as u8 | sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_FILE_IO as u8
   )).unwrap();
 	let mut frame = sciter::Window::new();
-	let handler = EventHandler { };
-	frame.event_handler(handler);
+	frame.event_handler(EventHandler {});
 	let dir = env::current_dir().unwrap().as_path().display().to_string();
 	let filename = format!("{}\\{}", dir, "main.htm");
 	frame.load_file(&filename);

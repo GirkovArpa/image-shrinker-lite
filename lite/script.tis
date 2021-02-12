@@ -1,10 +1,6 @@
 const DEBUGGING = true; 
 DEBUGGING && view.connectToInspector && view.connectToInspector(rootElement, inspectorIpAddress);
 
-function foo(s) {
-  stdout.println(s); 
-}
-
 function self.ready() {
   const w = 340dip;
   const h = 550dip;
@@ -13,6 +9,11 @@ function self.ready() {
   view.windowResizable = true;
   view.windowMaximizable = false;
   movableView("#draggable-caption");
+  self.timer(1s, function() {
+    view.compressPNG("sciter.png", function(result) {
+      stdout.println(result);
+    }); 
+  });
 }
 
 $(#ellipses) << event click {
