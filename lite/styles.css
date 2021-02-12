@@ -110,7 +110,7 @@ body {
   cursor: move;
   width: 100vw;
   height: 40dip;
-  z-index: 200;
+  z-index: 1200;
   float: left;
   position: relative;
 }
@@ -135,6 +135,7 @@ body {
 }
 
 #settings {
+  hit-margin: -40dip 0dip 0dip 0dip;
   background-color: rgb(17, 17, 17);
   opacity: 0.9;
   size: *;

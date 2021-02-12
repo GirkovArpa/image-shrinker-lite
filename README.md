@@ -5,7 +5,7 @@
 Image Shrinker Lite is a tool to minify images and graphics. Built with web technologies in [Sciter](https://sciter.com), it is intended to be a lightweight clone of the original [Image Shrinker](https://github.com/stefansl/image-shrinker) for Windows and Linux in addition to Mac.
 
 <h1 align="center">
-<img src="lite/preview.png" alt="screenshot" width="280"/></a><br/><br/>
+<img src="lite/preview.gif" alt="screenshot" width="280"/></a><br/><br/>
 </h1>
 
 ## How to use
@@ -20,11 +20,11 @@ Download the Sciter binary appropriate for your operating system here:
 - [Mac](https://github.com/c-smile/sciter-sdk/tree/master/bin.osx)
 - [Linux](https://github.com/c-smile/sciter-sdk/blob/master/bin.lnx/x64/scapp)
 
-Then run it inside the [lite](lite) folder.
+Then run it inside the [lite](lite) folder. **But why would you do that?** It doesn't do anything yet! 
 
 ## Build your own
 
-You can't.  Yet!
+You can't.  Yet! 😎
 
 ## Credits
 Thank you, guys!

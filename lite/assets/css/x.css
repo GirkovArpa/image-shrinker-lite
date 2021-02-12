@@ -9,6 +9,10 @@
   margin-right: -18dip;
 }
 
+#x:hover {
+  opacity: 0.75;
+}
+
 #x span {
   display: block;
   position: absolute;
