@@ -15,5 +15,14 @@ Image Shrinker-linux-x64/
 /assets/css/spectre.css.map
 /.env
 
-# lite
+# lite 
+
+# sciter
 scapp.exe
+sciter.dll
+
+# rust
+target
+
+# miscellaneous (dev) stuff
+sciter*.png

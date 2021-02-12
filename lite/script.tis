@@ -1,6 +1,10 @@
 const DEBUGGING = true; 
 DEBUGGING && view.connectToInspector && view.connectToInspector(rootElement, inspectorIpAddress);
 
+function foo(s) {
+  stdout.println(s); 
+}
+
 function self.ready() {
   const w = 340dip;
   const h = 550dip;

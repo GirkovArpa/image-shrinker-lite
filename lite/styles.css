@@ -25,6 +25,8 @@
 html, body {
   height: 100vh;
   width: 100vw;
+  min-height: 550dip;
+  min-width: 340dip;
 }
 
 html {
