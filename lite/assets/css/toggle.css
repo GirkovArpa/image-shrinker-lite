@@ -21,15 +21,15 @@
     behavior: radio;
   }
   :root::marker {
-    width: 28dip;
-    height: 15dip;
+    width: 32dip;
+    height: 18dip;
     background: #aaa;
-    border-radius: 7dip;
+    border-radius: 9dip;
     margin: * * * 3dip;
     foreground-image: url(../img/disc_white.png);
     foreground-repeat: no-repeat;
     foreground-position: 1dip 50%;
-    foreground-size: 13dip;
+    foreground-size: 16dip;
     fill: window;
     stroke: threedshadow;
     stroke-width: 0dip;
@@ -39,7 +39,7 @@
     foreground-image: url(../img/disc_grey.png);
   }
   :root:checked::marker {
-    foreground-position: 14dip 50%;
+    foreground-position: 15dip 50%;
     background: #46c2fe;
   }
   :root>option {

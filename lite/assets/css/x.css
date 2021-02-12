@@ -1,0 +1,30 @@
+#x {
+  float: right;
+  width: 100dip;
+  height: 100dip;
+  position: relative;
+  transform: rotate(0deg) scale(.3, .3);
+  cursor: pointer;
+  margin-top: 24dip;
+  margin-right: -18dip;
+}
+
+#x span {
+  display: block;
+  position: absolute;
+  height: 7dip;
+  width: 100%;
+  background: #FFFFFF;
+  opacity: 1;
+}
+
+#x span:nth-child(1) {
+  transform-origin: left center;
+  transform: rotate(45deg);
+}
+
+#x span:nth-child(2) {
+  transform-origin: left center;
+  transform: rotate(-45deg);
+  top: 70dip;
+}

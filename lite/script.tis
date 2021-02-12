@@ -15,6 +15,6 @@ $(#ellipses) << event click {
   $(#settings).attributes.toggleClass("open");
 }
 
-$(#X) << event click {
+$(#x) << event click {
   $(#settings).attributes.toggleClass("open");
 }

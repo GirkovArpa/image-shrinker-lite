@@ -153,10 +153,11 @@ body {
 
 #settings>#container {
   line-height: 20.25dip;
-  padding: 20dip 12dip 60dip 12dip;
+  padding: 20dip 12dip 20dip 12dip;
   size: *;
   font-size: 28dip;
   font-family: 'Fira Sans Regular';
+  height: 100vh;
 }
 
 h3 {
@@ -164,11 +165,6 @@ h3 {
   font-size: 28dip;
   line-height: 33.6dip;
   margin-bottom: 14dip;
-}
-
-#X {
-  font-size: 32dip;
-  cursor: pointer;
 }
 
 .col {
@@ -186,10 +182,18 @@ h3 {
 
 .row>span {
   flow: horizontal;
+  vertical-align: middle;
+  width: max-content;
   border-spacing: *;
+}
+
+.txt {
+  width: max-content;
   vertical-align: middle;
 }
 
-button[type="toggle"] {
+.toggle {
+  width: max-content;
+  vertical-align: middle;
   float: right;
 }
