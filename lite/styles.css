@@ -36,7 +36,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #F7F7F7;
+  background-color: transparent;
   font-weight: 400;
   overflow: hidden;
 }
@@ -207,7 +207,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 23;
   transform: translate(-100vw, 0);
   transition: transform 450ms cubic-in-out;
   color: rgba(255, 255, 255, 0.95);

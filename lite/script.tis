@@ -19,3 +19,8 @@ $(#x) << event click {
   $(#settings).attributes.toggleClass("open");
 }
 
+$(#dropzone) << event click {
+  const filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg,*.jpeg)|*.jpg;*jpeg|SVG Files (*.svg)|*.svg";
+  const filename = view.selectFile(#open, filter);
+  stdout.println(filename);
+}
