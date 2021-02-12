@@ -9,11 +9,6 @@ function self.ready() {
   view.windowResizable = true;
   view.windowMaximizable = false;
   movableView("#draggable-caption");
-  self.timer(1s, function() {
-    view.compressPNG("sciter.png", function(result) {
-      stdout.println(result);
-    }); 
-  });
 }
 
 $(#ellipses) << event click {
@@ -25,7 +20,11 @@ $(#x) << event click {
 }
 
 $(#dropzone) << event click {
-  const filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg,*.jpeg)|*.jpg;*jpeg|SVG Files (*.svg)|*.svg";
-  const filename = view.selectFile(#open, filter);
-  stdout.println(filename);
+  const filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg,*.jpeg)|*.jpg;*jpeg|SVG Files (*.svg)|*.svg|GIF Files (*.gif)|*.gif";
+  var filename = view.selectFile(#open, filter);
+  if (! filename) return;
+  filename = filename.replace("file://", "");
+  view.compressPNG(filename, function (result) {
+    stdout.println(result);
+  }); 
 }

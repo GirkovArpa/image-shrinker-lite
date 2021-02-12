@@ -1,5 +1,5 @@
 #[macro_use] extern crate sciter;
-use sciter::{HELEMENT, Element, Value};
+use sciter::{Value};
 use std::env;
 
 use flate2::read::ZlibEncoder;
@@ -10,14 +10,14 @@ use std::io::Read;
 use std::os::raw::c_uchar;
 use std::path::Path;
 
-use std::{thread, time};
+use std::{thread};
 
 struct EventHandler {}
 impl EventHandler {
 	fn compressPNG(&self, filename: sciter::Value, callback: sciter::Value) -> () {
 		println!("Compressing {} ...", filename);
 		thread::spawn(move || {
-			let outcome = compress_file();
+			let outcome = compress_file(filename.as_string().unwrap());
 			callback.call(None, &make_args!(outcome), None).unwrap();
 		});
 	}
@@ -29,9 +29,8 @@ impl sciter::EventHandler for EventHandler {
 	}
 }
 
-fn compress_file() -> String {
-		//&Element::from(root).call_function("foo", &make_args!("Proceeding to compress image ..."));
-		let filename = Path::new("sciter.png");
+fn compress_file(image_name: String) -> String {
+		let filename = Path::new(&image_name);
 		if !filename.is_file() {
         panic!("Invalid filename");
 		}
@@ -160,7 +159,7 @@ unsafe extern "C" fn deflate_ffi(
 
 // call flate2's zlib encoder return the buffer and length
 fn deflate(input: &[u8], _settings: CompressSettings) -> (Vec<u8>, usize) {
-    let mut z = ZlibEncoder::new(input, Compression::fast());
+    let mut z = ZlibEncoder::new(input, Compression::best());
     let mut buffer = vec![];
     match z.read_to_end(&mut buffer) {
         Ok(len) => (buffer, len),
@@ -176,5 +175,5 @@ unsafe fn vec_from_raw(data: *const c_uchar, len: usize) -> Vec<u8> {
 fn filtering(buffer: Vec<u8>, _width: usize, _height: usize) {
     //    let w_buffer: &
     //    let encoder = png::Encoder::new(&buffer as &[u8], width, height);
-    dbg!(buffer);
+    //dbg!(buffer);
 }
