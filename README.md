@@ -32,3 +32,4 @@ Thank you, guys!
 * Poly background: <http://alssndro.github.io/trianglify-background-generator>
 * CSS: [Spectre Css](https://picturepan2.github.io/spectre/)
 * Font: [Mozillas Fira Sans](https://github.com/mozilla/Fira)
+* Moveable window: [Sciter-MovableView](https://github.com/MustafaHi/Sciter-MovableView)
