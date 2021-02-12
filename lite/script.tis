@@ -1,0 +1,14 @@
+const DEBUGGING = true; 
+DEBUGGING && view.connectToInspector && view.connectToInspector(rootElement, inspectorIpAddress);
+
+function self.ready() {
+  const w = 340dip;
+  const h = 550dip;
+  const (sw, sh) = view.screenBox(#frame, #dimension);
+  view.move((sw / 2) - (w / 2), (sh / 2) - (h / 2), w, h, false);
+  view.windowResizable = true;
+  view.windowMaximizable = false;
+  movableView("#dragzone");
+}
+
+//$(span).html = $(span).text.replace(/ /g, "&#8198;&#8198;");

@@ -1,0 +1,112 @@
+@font-face {
+  font-family: 'Fira Sans Regular';
+  src: url(assets/font/fira_sans/regular.ttf);
+}
+
+@font-face {
+  font-family: 'Fira Sans Bold Italic';
+  src: url(assets/font/fira_sans/bold_italic.ttf);
+}
+
+@font-face {
+  font-family: 'Fira Sans Italic';
+  src: url(assets/font/fira_sans/italic.ttf);
+}
+
+* {
+  image-rendering: auto;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+}
+
+html {
+  overflow: hidden;
+  background: transparent;
+  border-radius: 5dip;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F7F7F7;
+  font-weight: 400;
+  overflow: hidden;
+}
+
+#bg {
+  position: relative;
+  float: left;
+  z-index: -99;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  transform: scale(1.1);
+  width: 100vw;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#bg>svg {
+  width: 120vw;
+  height: 120vh;
+  transform: scale(1.1);
+  transition: transform 700ms quad-out;
+}
+
+#bg:hover>svg {
+  transform: scale(1.15);
+}
+
+#dropzone {
+  position: relative;
+  z-index: 100;
+  margin: 40dip 10dip;
+  height: 72dip;
+  width: calc(100vw - 54dip);
+  border: 2dip dashed #111;
+  color: #111;
+  cursor: pointer;
+  opacity: .5;
+  padding: 16dip;
+  text-align: center;
+  transition: opacity .1s quad-in-out;
+  line-height: 24dip;
+  vertical-align: middle;
+  font-size: 16dip;
+}
+
+#dropzone:hover {
+  opacity: .75;
+}
+
+#dropzone>h1 {
+  font-size: 32dip;
+  color: rgb(17, 17, 17);
+  text-align: center;
+  vertical-align: middle;
+  font-family: 'Fira Sans Bold Italic';
+  margin: 10dip 0 10dip 0;
+}
+
+#dropzone>span {
+  font-family: 'Fira Sans Italic';
+  font-size: 16dip;
+  color: rgb(17, 17, 17);
+  font-style: italic;
+  text-align: center;
+  font-weight: normal;
+  line-height: 24dip;
+  vertical-align: bottom;
+}
+
+#dragzone {
+  cursor: move;
+  width: 100vw;
+  height: 40dip;
+  z-index: 200;
+  float: left;
+  position: relative;
+}

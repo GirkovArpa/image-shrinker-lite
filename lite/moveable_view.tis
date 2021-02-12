@@ -1,0 +1,44 @@
+// Movable View v1.1
+// https://github.com/MustafaHi/Sciter-MovableView
+
+// Call movableView('.selector');
+function movableView(s)
+{
+  var xoff,yoff;
+  var dragging = false;
+  function doDrag() { while( dragging ) view.doEvent(); }
+    
+  function onMouseDown(e)
+  {
+    if(!e.target.$is({s}) ){ return false; }
+    e.target.capture(true);
+    xoff = e.xView; yoff = e.yView;
+    dragging = true;
+    doDrag();
+  }
+    
+  function onMouseMove(e)
+  {
+    if( dragging )
+    {
+      view.move( e.xScreen - xoff, e.yScreen - yoff, false);
+      return true;
+    }
+    return true;
+  }
+    
+  function stopDrag(e)
+  {
+    if(dragging) { dragging = false; e.target.capture(false); return true; }
+    return false;
+  }
+    
+  function onKeyDown(e) { if(e.keyCode == Event.VK_ESCAPE ) return stopDrag(e); }
+    for(var i=0; i<$$({s}).length; ++i) {
+      $$({s})[i].subscribe(onMouseDown, Event.MOUSE, Event.MOUSE_DOWN );
+      $$({s})[i].subscribe(stopDrag, Event.MOUSE, Event.MOUSE_UP );
+      $$({s})[i].subscribe(onMouseMove, Event.MOUSE, Event.MOUSE_MOVE );
+      $$({s})[i].subscribe(onKeyDown, Event.KEY, Event.KEY_DOWN );
+    }
+  return false;
+}
