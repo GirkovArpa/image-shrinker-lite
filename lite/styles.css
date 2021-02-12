@@ -13,6 +13,11 @@
   src: url(assets/font/fira_sans/italic.ttf);
 }
 
+@font-face {
+  font-family: 'Fira Sans Light';
+  src: url(assets/font/fira_sans/light.ttf);
+}
+
 * {
   image-rendering: auto;
 }
@@ -117,14 +122,74 @@ body {
   bottom: 20dip;
   right: 20dip;
   cursor: pointer;
-  font-size: 28ip;
-  flow: horizontal;
+  font-size: 28dip;
   text-align: center;
   vertical-align: middle;
-  border-spacing: *;
   color: rgb(17, 17, 17);
+  border-spacing: *;
+  flow: horizontal;
 }
 
 #ellipses:hover {
   opacity: 0.5;
+}
+
+#settings {
+  background-color: rgb(17, 17, 17);
+  opacity: 0.9;
+  size: *;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transform: translate(-100vw, 0);
+  transition: transform 450ms cubic-in-out;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+#settings.open {
+  transform: translate(0, 0);
+}
+
+#settings>#container {
+  line-height: 20.25dip;
+  padding: 20dip 12dip 60dip 12dip;
+  size: *;
+  font-size: 28dip;
+  font-family: 'Fira Sans Regular';
+}
+
+h3 {
+  padding: 10dip 8dip 10dip 8dip;
+  font-size: 28dip;
+  line-height: 33.6dip;
+  margin-bottom: 14dip;
+}
+
+#X {
+  font-size: 32dip;
+  cursor: pointer;
+}
+
+.col {
+  size: 100%;
+  flow: vertical;
+  border-spacing: *;
+}
+
+.row {
+  font-size: 13.5dip;
+  line-height: 20.25dip;
+  border-bottom: 1dip solid rgba(255, 255, 255, 0.1);
+  padding: 13.5dip 8dip 13.5dip 8dip;
+}
+
+.row>span {
+  flow: horizontal;
+  border-spacing: *;
+  vertical-align: middle;
+}
+
+button[type="toggle"] {
+  float: right;
 }

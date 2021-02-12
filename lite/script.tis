@@ -10,3 +10,11 @@ function self.ready() {
   view.windowMaximizable = false;
   movableView("#dragzone");
 }
+
+$(#ellipses) << event click {
+  $(#settings).attributes.toggleClass("open");
+}
+
+$(#X) << event click {
+  $(#settings).attributes.toggleClass("open");
+}

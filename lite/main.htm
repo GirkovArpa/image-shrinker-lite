@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <title>Image Shrinker</title>
     <link href="styles.css" rel="stylesheet">
+    <link href="assets/css/toggle.css" rel="stylesheet">
     <script src="script.tis" type="text/tiscript"></script>
-    <script src="moveable_view.tis" type="text/tiscript"></script>
+    <script src="assets/tis/moveable_view.tis" type="text/tiscript"></script>
   </head>
 
   <body>
@@ -22,6 +23,20 @@
       <span>⋅</span>
       <span>⋅</span>
       <span>⋅</span>
+    </div>
+    <div #settings>
+      <div #container>
+        <h3>Settings</h3>
+        <div .col>
+          <div .row><span>Save shrinked files in same folder<button|toggle /></span></div>
+          <div .row><span>Enable notifications</span></div>
+          <div .row><span>Add .min suffix to shrinked files</span></div>
+          <div .row><span>Add subfolder "minified"</span></div>
+          <div .row><span>Clear result list, when shrinking new images</span></div>
+          <div .row><span>Check for updates</span></div>
+        </div>
+      </div>
+      <div #X>✕</div>
     </div>
   </body>
 
