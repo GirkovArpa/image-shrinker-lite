@@ -16,7 +16,7 @@ const { TouchBarButton } = TouchBar;
 const gifsicle = require('gifsicle');
 
 global.debug = {
-    devTools: 0
+    devTools: 1
 };
 
 /**

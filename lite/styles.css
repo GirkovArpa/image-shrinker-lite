@@ -74,7 +74,7 @@ body {
   text-align: center;
   transition: opacity .1s quad-in-out;
   line-height: 24dip;
-  vertical-align: middle;
+
   font-size: 16dip;
 }
 
@@ -83,12 +83,13 @@ body {
 }
 
 #dropzone>h1 {
+  line-height: 38.4dip;
   font-size: 32dip;
   color: rgb(17, 17, 17);
   text-align: center;
   vertical-align: middle;
   font-family: 'Fira Sans Bold Italic';
-  margin: 10dip 0 10dip 0;
+  margin: 0 0 10dip 0;
 }
 
 #dropzone>span {
@@ -99,7 +100,6 @@ body {
   text-align: center;
   font-weight: normal;
   line-height: 24dip;
-  vertical-align: bottom;
 }
 
 #dragzone {
