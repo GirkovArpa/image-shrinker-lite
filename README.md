@@ -31,7 +31,11 @@ Image Shrinker Lite is a tool to minify images and graphics. Built with web tech
   - [Mac](https://github.com/c-smile/sciter-sdk/blob/master/bin.osx/sciter-osx-64.dylib)
   - [Linux](https://github.com/c-smile/sciter-sdk/blob/master/bin.lnx/x64/libsciter-gtk.so)
 
-  Place it inside the [lite](lite) folder, and run `cargo run` from a console window there.
+  Place it inside the [lite](lite) folder, and run `cargo build --release` from a console window there.
+
+  Then find the resulting executable in the `target` folder, and run it directly.
+
+  Running it from a command line will result in the file drag-and-drop functionality not working.
 
   This assumes you have the Rust toolchain installed.
 </details>
