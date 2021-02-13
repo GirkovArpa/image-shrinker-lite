@@ -72,13 +72,12 @@ fn compress_file(image_name: String) -> String {
 		"Compression complete.".to_string()
 	}
 fn main() {
+    sciter::set_options(sciter::RuntimeOptions::DebugMode(true)).unwrap();
     sciter::set_options(sciter::RuntimeOptions::ScriptFeatures(
         sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_SYSINFO as u8 
         | sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_FILE_IO as u8
     )).unwrap();
-    let flags = sciter::types::SCITER_CREATE_WINDOW_FLAGS::SW_MAIN;
-    let builder = sciter::window::Builder::with_flags(flags);
-    let mut frame = builder.create();
+    let mut frame = sciter::window::Builder::main().create();
     frame.event_handler(EventHandler {});
     let dir = env::current_dir().unwrap().as_path().display().to_string();
     let filename = format!("{}\\{}", dir, "main.htm");
