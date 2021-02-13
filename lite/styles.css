@@ -89,7 +89,7 @@ body {
   z-index: -99;
   top: 0;
   left: 0;
-  height: 40vh;
+  height: 0vh;
   transform: scale(1.1);
   width: 100vw;
   text-align: center;
@@ -103,7 +103,8 @@ body {
   transition: transform 700ms quad-out;
 }
 
-#bg:hover>svg {
+/* https://stackoverflow.com/a/32945520/13378247 */
+html:hover>body>#bg>svg {
   transform: scale(1.15);
 }
 

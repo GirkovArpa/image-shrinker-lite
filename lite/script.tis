@@ -28,15 +28,35 @@ function processFile(filename) {
     "SVG Files (*.svg)|*.svg",
     "GIF Files (*.gif)|*.gif"
   ].join("|");
-  filename = filename || view.selectFile(#open, filter);
+  filename = filename || view.selectFile(#open-multiple, filter);
   if (! filename) return;
-  const ext = filename %~ ".";
-  if (ext != "png") return view.msgbox(#error, "Only PNG images are supported at this time.", "Image Shrinker Lite");
-  filename = filename.replace("file://", "");
-  $(#dropzone).attributes.addClass("is--processing");
-  view.compressPNG(filename, (result) => {
-    $(#dropzone).attributes.removeClass("is--processing");
-  }); 
+  var files = (typeof filename == #array ? filename : [filename]);
+  var fileCount = files.length;
+  var completed = 0;
+  for (var file in files) {
+    const ext = file %~ ".";
+    if (ext != "png") {
+      view.msgbox(#error, "Only PNG images are supported at this time.", "Image Shrinker Lite");
+      completed++;
+      continue;
+    }
+    file = file.replace("file://", "").urlUnescape();
+    $(#dropzone).attributes.addClass("is--processing");
+    stdout.println(file);
+    view.compressPNG(file, (compressed_filename, sizeBefore, sizeAfter) => {
+      compressed_filename = compressed_filename.replace(/\/|\\/g, "\\");
+      const percent = Math.round((100.0 / sizeBefore.toFloat()) * (sizeBefore.toFloat() - sizeAfter.toFloat())).toInteger();
+      completed++;
+      if (completed == fileCount) {
+        $(#dropzone).attributes.removeClass("is--processing");
+      }
+      $(#results).$append(<div .result>
+        <span .savings>You saved {percent}%. Your result is here:</span>
+        <br>
+        <span .filename>{compressed_filename}</span>
+      </div>);
+    }); 
+  }
 }
 
 $(#dropzone) << event click {

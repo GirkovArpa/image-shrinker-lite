@@ -27,3 +27,4 @@ target
 # miscellaneous (dev) stuff
 sciter*.png
 *.exe
+test*

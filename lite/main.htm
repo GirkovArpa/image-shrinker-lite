@@ -7,9 +7,11 @@
     <link href="styles.css" rel="stylesheet">
     <link href="assets/css/toggle.css" rel="stylesheet">
     <link href="assets/css/x.css" rel="stylesheet">
+    <link href="assets/css/results.css" rel="stylesheet">
     <script src="script.tis" type="text/tiscript"></script>
     <script src="assets/tis/moveable_view.tis" type="text/tiscript"></script>
     <script src="assets/tis/drag_and_drop.tis" type="text/tiscript"></script>
+    <script src="assets/tis/results.tis" type="text/tiscript"></script>
   </head>
 
   <body>
@@ -24,6 +26,18 @@
     <div #dropzone accept-drop="*.png;*.jpg;*.jpeg;*.svg;*.gif">
       <h1>Drag files here</h1>
       <span>only SVG, JPG, GIF and PNG allowed</span>
+    </div>
+    <div #results>
+      <div .result>
+        <span .savings>You saved 100%. Your result is here:</span>
+        <br>
+        <span .filename>C:\Github\image-shrinker-lite\lite\sciter.png</span>
+      </div>
+      <div .result>
+        <span .savings>You saved 100%. Your result is here:</span>
+        <br>
+        <span .filename>C:\Github\image-shrinker-lite\lite\sciter.png</span>
+      </div>
     </div>
     <div #ellipses>
       <span>⋅</span>

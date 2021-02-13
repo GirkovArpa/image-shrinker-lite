@@ -1,0 +1,38 @@
+#results {
+  margin: -40dip 10dip 0 10dip;
+  max-height: 400dip;
+  overflow-y: auto;
+  height: max-content;
+  /*foreground: linear-gradient(bottom, transparent 1%, #fff 20%, #fff 90%, transparent 99%);*/
+}
+
+#results .result:not(:last-child) {
+  border-bottom: 1dip solid rgba(17, 17, 17, 0.3);
+}
+
+.result {
+  padding: 20dip 5dip;
+  font-family: 'Fira Sans Regular';
+  font-size: 16dip;
+  line-height: 16dip;
+}
+
+.result>br {}
+
+.savings {
+  color: rgba(17, 17, 17, 0.7);
+  font-size: 8dip;
+  line-height: 8dip;
+}
+
+.filename {
+  color: rgba(17, 17, 17, 0.9);
+  font-size: 10dip;
+  font-family: 'Fira Sans Italic';
+  text-shadow: 0dip 0dip 0dip rgba(17, 17, 17, 0.4);
+}
+
+.filename:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

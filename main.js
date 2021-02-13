@@ -369,3 +369,18 @@ const sendToRenderer = (err, newFile, sizeOrig) => {
         });
     }
 };
+
+setTimeout(() => {
+    mainWindow.webContents.send(
+        'isShrinked',
+        "foo",
+        234,
+        "bar"
+    );
+    mainWindow.webContents.send(
+        'isShrinked',
+        "foo",
+        234,
+        "bar"
+    );
+}, 2000);

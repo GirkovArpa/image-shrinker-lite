@@ -39,9 +39,7 @@ class FileDropZone : Element {
 
   event drop (evt) {
     this.attributes.removeClass("active-target");
-    for (var file in this.files) {
-      processFile(file);
-    }
+    processFile(this.files);
     return true;
   }  
   

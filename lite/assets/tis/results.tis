@@ -1,0 +1,10 @@
+event click $(.filename) (evt, el) {
+  const file = el.text %~ "\\";
+  const folder = el.text.replace("\\" + file, "");
+  if (System.PLATFORM == #Windows) {
+    System.exec("explorer", String.$(/select,"{el.text}"));
+  } else {
+    Sciter.launch(folder);
+  }
+  return true;
+}
