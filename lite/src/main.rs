@@ -72,18 +72,18 @@ fn compress_file(image_name: String) -> String {
 		"Compression complete.".to_string()
 	}
 fn main() {
-	sciter::set_options(sciter::RuntimeOptions::ScriptFeatures(
-		sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_SYSINFO as u8 
-		| sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_FILE_IO as u8
-		| sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_SOCKET_IO as u8
-		| sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_EVAL as u8
-  )).unwrap();
-	let mut frame = sciter::Window::new();
-	frame.event_handler(EventHandler {});
-	let dir = env::current_dir().unwrap().as_path().display().to_string();
-	let filename = format!("{}\\{}", dir, "main.htm");
-	frame.load_file(&filename);
-	frame.run_app();
+    sciter::set_options(sciter::RuntimeOptions::ScriptFeatures(
+        sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_SYSINFO as u8 
+        | sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_FILE_IO as u8
+    )).unwrap();
+    let flags = sciter::types::SCITER_CREATE_WINDOW_FLAGS::SW_MAIN;
+    let builder = sciter::window::Builder::with_flags(flags);
+    let mut frame = builder.create();
+    frame.event_handler(EventHandler {});
+    let dir = env::current_dir().unwrap().as_path().display().to_string();
+    let filename = format!("{}\\{}", dir, "main.htm");
+    frame.load_file(&filename);
+    frame.run_app();
 }
 
 // using imagequant quantize the PNG to reduce the file size
