@@ -16,7 +16,6 @@ class FileDropZone : Element {
 
   function attached() {
     this.filter = (this.attributes["accept-drop"] || "*").split(";");
-    debug filter: this.filter;
   }
 
   event dragaccept (evt) {
@@ -35,14 +34,14 @@ class FileDropZone : Element {
   }  
 
   event drag (evt) {
-    stdout.println(evt.x,evt.y);
     return true;
   }  
 
   event drop (evt) {
     this.attributes.removeClass("active-target");
-    this.attributes.toggleClass("is--processing");
-    view.msgbox(#information, String.printf("Dropped:%V", this.files));
+    for (var file in this.files) {
+      processFile(file);
+    }
     return true;
   }  
   
