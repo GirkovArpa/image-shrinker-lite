@@ -104,6 +104,7 @@ body {
 }
 
 /* https://stackoverflow.com/a/32945520/13378247 */
+
 html:hover>body>#bg>svg {
   transform: scale(1.15);
 }
@@ -229,7 +230,6 @@ html:hover>body>#bg>svg {
   size: *;
   font-size: 28dip;
   font-family: 'Fira Sans Regular';
-  height: 100vh;
 }
 
 h3 {
@@ -250,6 +250,11 @@ h3 {
   line-height: 20.25dip;
   border-bottom: 1dip solid rgba(255, 255, 255, 0.1);
   padding: 13.5dip 8dip 13.5dip 8dip;
+}
+
+.row.disabled {
+  opacity: 0.4;
+  filter: saturate(0.5);
 }
 
 .row>span {

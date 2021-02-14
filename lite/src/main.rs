@@ -5,23 +5,25 @@ mod gif;
 mod svg;
 
 #[macro_use] extern crate sciter;
-use sciter::{Value};
-use std::{env,thread};
+use sciter::{ Value };
+use std::{ env, thread };
+
 
 struct EventHandler {}
 impl EventHandler {
-	fn compressPNG(&self, filename: sciter::Value, callback: sciter::Value) -> () {
+	fn compressPNG(&self, filename: Value, addExt: Value, addFolder: Value, callback: Value) -> () {
+        let options = png::Options { addExt: addExt, addFolder: addFolder };
 		thread::spawn(move || {
-            let outcome = png::compress_file(filename.as_string().unwrap());
-            let args = &make_args!(outcome.arg1, outcome.arg2, outcome.arg3);
-			callback.call(None, args, None).unwrap();
-		});
+            let args = png::compress_file(filename.as_string().unwrap(), options);
+            let png::Args { path, sizeBefore, sizeAfter, error } = args;
+            callback.call(None, &make_args!(path, sizeBefore, sizeAfter, error), None).unwrap();
+        });
 	}
 }
 
 impl sciter::EventHandler for EventHandler {
 	dispatch_script_call! {
-		fn compressPNG(Value, Value);
+		fn compressPNG(Value, Value, Value, Value);
 	}
 }
 fn main() {

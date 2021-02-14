@@ -8,10 +8,12 @@
     <link href="assets/css/toggle.css" rel="stylesheet">
     <link href="assets/css/x.css" rel="stylesheet">
     <link href="assets/css/results.css" rel="stylesheet">
+    <link href="assets/css/copyright.css" rel="stylesheet">
     <script src="script.tis" type="text/tiscript"></script>
     <script src="assets/tis/moveable_view.tis" type="text/tiscript"></script>
     <script src="assets/tis/drag_and_drop.tis" type="text/tiscript"></script>
     <script src="assets/tis/results.tis" type="text/tiscript"></script>
+    <script src="assets/tis/copyright.tis" type="text/tiscript"></script>
   </head>
 
   <body>
@@ -37,19 +39,19 @@
       <div #container>
         <h3>Settings</h3>
         <div .col>
-          <div .row>
+          <div .row .disabled>
             <span>
               <div .txt>Save shrinked files in same folder</div>
               <div .toggle>
-                <button|toggle />
+                <button|toggle checked disabled/>
               </div>
             </span>
           </div>
-          <div .row>
+          <div .row .disabled>
             <span>
               <div .txt>Enable notifications</div>
               <div .toggle>
-                <button|toggle />
+                <button|toggle checked disabled/>
               </div>
             </span>
           </div>
@@ -57,7 +59,7 @@
             <span>
               <div .txt>Add .min suffix to shrinked files</div>
               <div .toggle>
-                <button|toggle />
+                <button|toggle #addExt checked/>
               </div>
             </span>
           </div>
@@ -65,32 +67,43 @@
             <span>
               <div .txt>Add subfolder "minified"</div>
               <div .toggle>
-                <button|toggle />
+                <button|toggle #addFolder/>
               </div>
             </span>
           </div>
-          <div .row>
+          <div .row .disabled>
             <span>
               <div .txt>Clear result list, when shrinking new images</div>
               <div .toggle>
-                <button|toggle />
+                <button|toggle checked disabled/>
               </div>
             </span>
           </div>
-          <div .row>
+          <div .row .disabled>
             <span>
               <div .txt>Check for updates</div>
               <div .toggle>
-                <button|toggle />
+                <button|toggle disabled/>
               </div>
             </span>
           </div>
         </div>
-        <div #x>
-          <span></span>
-          <span></span>
+      </div>
+      <div #copyright>
+        <div .copyright>
+          <span .faded>This application uses</span>
+          <img #sciter-logo src="assets/img/sciter.png" />
+          <span .faded>Engine,</span>
+        </div>
+        <div .copyright>
+          <span .faded>© Terra Informatica Software, Inc.</span>
         </div>
       </div>
+      <div #x>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
     </div>
   </body>
 

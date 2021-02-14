@@ -1,0 +1,3 @@
+$(#sciter-logo) << event click {
+  Sciter.launch("https://sciter.com");
+}

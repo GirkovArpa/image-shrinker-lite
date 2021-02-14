@@ -1,9 +1,15 @@
 use sciter::{Value};
 
 pub struct Args {
-    pub arg1: sciter::Value,
-    pub arg2: sciter::Value,
-    pub arg3: sciter::Value
+    pub path: sciter::Value,
+    pub sizeBefore: sciter::Value,
+    pub sizeAfter: sciter::Value,
+    pub error: sciter::Value
+}
+
+pub struct Options {
+    pub addExt: Value,
+    pub addFolder: Value,
 }
 
 use flate2::read::ZlibEncoder;
@@ -12,60 +18,82 @@ use imagequant;
 use lodepng::{self, ColorType::PALETTE, CompressSettings, State, RGBA};
 use std::io::Read;
 use std::os::raw::c_uchar;
-use std::path::Path;
+use std::path::{ Path, PathBuf };
+use std::{str, fs};
 
-pub fn compress_file(image_name: String) -> Args {
-    let filename = Path::new(&image_name);
-    if !filename.is_file() {
-        panic!("Invalid filename");
+fn make_error_message(message: String) -> Args {
+    Args {
+        path: Value::from(false),
+        sizeBefore: Value::from(false),
+        sizeAfter: Value::from(false),
+        error: Value::from(message)
     }
-    let output_filename = format!(
-        "{}-compressed.{}",
-        filename.file_stem().unwrap().to_str().unwrap(),
-        filename.extension().unwrap().to_str().unwrap()
-    );
-    let output_filename = filename.with_file_name(output_filename);
+}
 
-    let compressed_filename = output_filename.clone(); 
+fn append_dir(p: &Path, d: &str) -> PathBuf {
+    let dirs = p.parent().unwrap();
+    dirs.join(d).join(p.file_name().unwrap())
+}
 
-    let file = match lodepng::decode32_file(filename) {
+pub fn compress_file(file_name: String, options: Options) -> Args {
+    let path = Path::new(&file_name);
+    if !path.is_file() {
+        return make_error_message(format!("Not a file: {}", path.display()));
+    }    
+    let in_file_name_path_buf = PathBuf::from(path);
+    let file = match lodepng::decode32_file(&in_file_name_path_buf) {
         Ok(file) => file,
-        Err(_) => panic!("Could not open file {}", "output_filename"),
-		};
-	  let width = file.width;
+        Err(_) => return make_error_message(format!("Could not open file: {}", in_file_name_path_buf.display()))
+    };
+    let add_ext = match options.addExt.to_bool().unwrap() {
+        true => ".min",
+        _ => ""
+    };
+    let add_folder = options.addFolder.to_bool().unwrap();
+    if add_folder {
+        let path = path.clone().parent().unwrap().join("minified");
+        fs::create_dir_all(path);
+    }
+    let out_file_name_string = format!(
+        "{}{}.{}",
+        path.file_stem().unwrap().to_str().unwrap(),
+        add_ext,
+        path.extension().unwrap().to_str().unwrap()
+    );
+    let mut out_file_name_path_buf = path.with_file_name(out_file_name_string);
+    if add_folder {
+        out_file_name_path_buf = append_dir(Path::new(&out_file_name_path_buf), "minified");
+    }
+	let width = file.width;
     let height = file.height;
-
     let in_buffer_len = file.buffer.len();
-    println!("input buffer: {:?}", &file.buffer.len());
-
     let (palette, pixels) = quantize(&file.buffer, width as usize, height as usize);
-
     let mut state = make_state();
-
     add_palette_to_state(&mut state, palette);
-
-    let mut out_buffer_len: usize = 0;
-
+    let out_buffer_len: usize;
     // encode and output final filesize
     match state.encode(&pixels, width, height) {
         Ok(out_buffer) => {
             out_buffer_len = out_buffer.len();
-            println!("Output buffer size {}", out_buffer.len());
             filtering(out_buffer, width, height);
         }
         Err(_) => {
-            panic!("failed to encode the image");
+            return make_error_message("Failed to encode the image.".to_string())
         }
     }
-
-    state
-        .encode_file(output_filename, &pixels, width, height)
-                .unwrap();
-                
+    match state.encode_file(&out_file_name_path_buf, &pixels, width, height) {
+        Err(e) => {
+            let err_msg = str::from_utf8(e.c_description());
+            let err_msg = err_msg.ok().unwrap();
+            return make_error_message(format!("{:?}", err_msg))
+        }
+        _ => ()
+    }
     Args { 
-        arg1: Value::from(compressed_filename.display().to_string()),
-        arg2: Value::from(in_buffer_len as i32),
-        arg3: Value::from(out_buffer_len as i32),
+        path: Value::from(out_file_name_path_buf.display().to_string()),
+        sizeBefore: Value::from(in_buffer_len as i32),
+        sizeAfter: Value::from(out_buffer_len as i32),
+        error: Value::from(false)
     }
 }
 

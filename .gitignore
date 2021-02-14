@@ -28,3 +28,4 @@ target
 sciter*.png
 *.exe
 test*
+minified

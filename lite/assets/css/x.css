@@ -2,7 +2,7 @@
   float: right;
   width: 100dip;
   height: 100dip;
-  position: relative;
+  position: absolute;
   transform: rotate(0deg) scale(.3, .3);
   cursor: pointer;
   margin-top: 24dip;

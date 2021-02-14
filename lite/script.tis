@@ -36,25 +36,31 @@ function processFile(filename) {
   for (var file in files) {
     const ext = file %~ ".";
     if (ext != "png") {
-      view.msgbox(#error, "Only PNG images are supported at this time.", "Image Shrinker Lite");
+      view.msgbox(#error, "Only PNG images are supported at this time.", "Error");
       completed++;
       continue;
     }
     file = file.replace("file://", "").urlUnescape();
     $(#dropzone).attributes.addClass("is--processing");
-    stdout.println(file);
-    view.compressPNG(file, (compressed_filename, sizeBefore, sizeAfter) => {
-      compressed_filename = compressed_filename.replace(/\/|\\/g, "\\");
-      const percent = Math.round((100.0 / sizeBefore.toFloat()) * (sizeBefore.toFloat() - sizeAfter.toFloat())).toInteger();
+    const addExt = $(#addExt).state.checked;
+    const addFolder = $(#addFolder).state.checked;
+    view.compressPNG(file, addExt, addFolder, (path, sizeBefore, sizeAfter, error) => {
       completed++;
       if (completed == fileCount) {
         $(#dropzone).attributes.removeClass("is--processing");
       }
-      $(#results).$append(<div .result>
-        <span .savings>You saved {percent}%. Your result is here:</span>
-        <br>
-        <span .filename>{compressed_filename}</span>
-      </div>);
+      if (error !== false) {
+        return view.msgbox(#error, error, "Error");
+      }
+      path = path.replace(/\/|\\/g, "\\");
+      const percent = Math.round((100.0 / sizeBefore.toFloat()) * (sizeBefore.toFloat() - sizeAfter.toFloat())).toInteger();
+      $(#results).$append(
+        <div .result>
+          <span .savings>You saved {percent}%. Your result is here:</span>
+          <br>
+          <span .filename>{path}</span>
+        </div>
+      );
     }); 
   }
 }

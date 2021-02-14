@@ -1,0 +1,42 @@
+#copyright {
+  height: 30dip;
+  line-height: 30dip;
+  flow: vertical;
+  justify-content: center;
+  position: absolute;
+  bottom: calc(8dip + 30dip + 15dip);
+  left: calc(12dip + 13.5dip);
+}
+
+.copyright {
+  display: inline-block;
+  font-size: 9dip;
+  font-family: 'Fire Sans';
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.copyright:last-child {
+  line-height: 15dip;
+}
+
+#sciter-link, #sciter-logo {
+  vertical-align: middle;
+}
+
+.faded {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+#sciter-logo {
+  transform: translate(0, -1dip);
+  margin: 0 3dip 0 3dip;
+  filter: saturate(0);
+  transition: opacity 200ms cubic-in-out;
+  opacity: 0.4;
+}
+
+#sciter-logo:hover {
+  opacity: 1;
+  cursor: pointer;
+}
