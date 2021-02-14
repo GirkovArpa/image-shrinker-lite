@@ -1,3 +1,4 @@
+// https://stackoverflow.com/a/45520092/13378247
 mod png;
 mod jpg;
 mod gif;
