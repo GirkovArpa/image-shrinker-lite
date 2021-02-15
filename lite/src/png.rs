@@ -1,17 +1,5 @@
 use sciter::{Value};
 
-pub struct Args {
-    pub path: sciter::Value,
-    pub sizeBefore: sciter::Value,
-    pub sizeAfter: sciter::Value,
-    pub error: sciter::Value
-}
-
-pub struct Options {
-    pub addExt: Value,
-    pub addFolder: Value,
-}
-
 use flate2::read::ZlibEncoder;
 use flate2::Compression;
 use imagequant;
@@ -20,22 +8,11 @@ use std::io::Read;
 use std::os::raw::c_uchar;
 use std::path::{ Path, PathBuf };
 use std::{str, fs};
-
-fn make_error_message(message: String) -> Args {
-    Args {
-        path: Value::from(false),
-        sizeBefore: Value::from(false),
-        sizeAfter: Value::from(false),
-        error: Value::from(message)
-    }
-}
-
-fn append_dir(p: &Path, d: &str) -> PathBuf {
-    let dirs = p.parent().unwrap();
-    dirs.join(d).join(p.file_name().unwrap())
-}
+// https://stackoverflow.com/a/55033999/13378247
+use crate::misc::{ Args, Options, make_error_message, append_dir };
 
 pub fn compress_file(file_name: String, options: Options) -> Args {
+    println!("png::compress_file");
     let path = Path::new(&file_name);
     if !path.is_file() {
         return make_error_message(format!("Not a file: {}", path.display()));
@@ -87,13 +64,12 @@ pub fn compress_file(file_name: String, options: Options) -> Args {
             let err_msg = err_msg.ok().unwrap();
             return make_error_message(format!("{:?}", err_msg))
         }
-        _ => ()
-    }
-    Args { 
-        path: Value::from(out_file_name_path_buf.display().to_string()),
-        sizeBefore: Value::from(in_buffer_len as i32),
-        sizeAfter: Value::from(out_buffer_len as i32),
-        error: Value::from(false)
+        _ => Args { 
+            path: Value::from(out_file_name_path_buf.display().to_string()),
+            sizeBefore: Value::from(in_buffer_len as i32),
+            sizeAfter: Value::from(out_buffer_len as i32),
+            error: Value::from(false)
+        }
     }
 }
 

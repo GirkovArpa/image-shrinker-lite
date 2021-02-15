@@ -1,4 +1,4 @@
-const DEBUGGING = true; 
+const DEBUGGING = false; 
 DEBUGGING && view.connectToInspector && view.connectToInspector(rootElement, inspectorIpAddress);
 
 function self.ready() {
@@ -33,10 +33,14 @@ function processFile(filename) {
   var files = (typeof filename == #array ? filename : [filename]);
   var fileCount = files.length;
   var completed = 0;
+  const clearResults = $(#clearResults).state.checked;
+  if (clearResults) {
+    $(#results).html = "";
+  }
   for (var file in files) {
     const ext = file %~ ".";
-    if (ext != "png") {
-      view.msgbox(#error, "Only PNG images are supported at this time.", "Error");
+    if (!/png|jpg|jpeg/.test(ext)) {
+      view.msgbox(#error, "Only PNG & JPG/JPEG images are supported at this time.", "Error");
       completed++;
       continue;
     }
@@ -44,7 +48,8 @@ function processFile(filename) {
     $(#dropzone).attributes.addClass("is--processing");
     const addExt = $(#addExt).state.checked;
     const addFolder = $(#addFolder).state.checked;
-    view.compressPNG(file, addExt, addFolder, (path, sizeBefore, sizeAfter, error) => {
+    const format = ext;
+    view.compressFile(file, format, addExt, addFolder, (path, sizeBefore, sizeAfter, error) => {
       completed++;
       if (completed == fileCount) {
         $(#dropzone).attributes.removeClass("is--processing");
