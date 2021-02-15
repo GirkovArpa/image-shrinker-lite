@@ -1,4 +1,4 @@
-#![windows_subsystem="windows"]
+//#![windows_subsystem="windows"]
 
 // https://stackoverflow.com/a/45520092/13378247
 mod png;
@@ -17,8 +17,9 @@ struct EventHandler {}
 impl EventHandler {
 	fn compressFile(&self, filename: Value, format: Value, addExt: Value, addFolder: Value, callback: Value) -> () {
         let ext = String::from(format.to_string());
+        println!("{}", ext);
         let ext = ext.as_str();
-
+        println!("{}", ext);
         let compression_function = match &ext as &str {
             "\"png\"" => png::compress_file,
             "\"jpg\"" | "\"jpeg\"" => jpg::compress_file,
