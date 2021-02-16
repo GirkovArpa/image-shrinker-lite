@@ -1,21 +1,21 @@
 @font-face {
   font-family: 'Fira Sans Regular';
-  src: url(assets/font/fira_sans/regular.ttf);
+  src: url(../font/fira_sans/regular.ttf);
 }
 
 @font-face {
   font-family: 'Fira Sans Bold Italic';
-  src: url(assets/font/fira_sans/bold_italic.ttf);
+  src: url(../font/fira_sans/bold_italic.ttf);
 }
 
 @font-face {
   font-family: 'Fira Sans Italic';
-  src: url(assets/font/fira_sans/italic.ttf);
+  src: url(../font/fira_sans/italic.ttf);
 }
 
 @font-face {
   font-family: 'Fira Sans Light';
-  src: url(assets/font/fira_sans/light.ttf);
+  src: url(../font/fira_sans/light.ttf);
 }
 
 * {
@@ -139,7 +139,7 @@ html:hover>body>#bg>svg {
 }
 
 #dropzone.is--processing::marker {
-  background-image: url(assets/svg/tail_spin.svg);
+  background-image: url(../svg/tail_spin.svg);
   size: calc(72dip / 2);
   margin: *;
   animation: spin .9s linear infinite;

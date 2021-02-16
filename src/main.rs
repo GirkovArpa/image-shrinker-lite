@@ -1,4 +1,4 @@
-//#![windows_subsystem="windows"]
+#![windows_subsystem="windows"]
 
 // https://stackoverflow.com/a/45520092/13378247
 mod png;
@@ -44,15 +44,15 @@ impl sciter::EventHandler for EventHandler {
     }
 }
 fn main() {
-    //sciter::set_options(sciter::RuntimeOptions::DebugMode(false)).unwrap();
+    sciter::set_options(sciter::RuntimeOptions::DebugMode(false)).unwrap();
+    let archived = include_bytes!("../target/assets.rc");
     sciter::set_options(sciter::RuntimeOptions::ScriptFeatures(
         sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_SYSINFO as u8 
         | sciter::SCRIPT_RUNTIME_FEATURES::ALLOW_FILE_IO as u8
     )).unwrap();
-    let mut frame = sciter::window::Builder::main().create();
+    let mut frame = sciter::Window::new();
     frame.event_handler(EventHandler {});
-    let dir = env::current_dir().unwrap().as_path().display().to_string();
-    let filename = format!("{}\\{}", dir, "main.htm");
-    frame.load_file(&filename);
+    frame.archive_handler(archived).expect("Unable to load archive");
+    frame.load_file("this://app/main.htm");
     frame.run_app();
 }

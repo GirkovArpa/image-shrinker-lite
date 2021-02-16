@@ -20,6 +20,7 @@ Image Shrinker-linux-x64/
 # sciter
 scapp.exe
 sciter.dll
+!/lite/build
 
 # rust
 target

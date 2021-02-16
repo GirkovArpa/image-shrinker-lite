@@ -1,43 +1,47 @@
 # Image Shrinker Lite
 
-## 🚧 Under Construction! 🏗️
-
-Image Shrinker Lite is a tool to minify images and graphics. Built with web technologies in [Sciter](https://sciter.com), it is intended to be a lightweight clone of the original [Image Shrinker](https://github.com/stefansl/image-shrinker) for Windows and Linux in addition to Mac.
+Image Shrinker Lite is a tool to minify images and graphics. Built with web technologies in [Sciter](https://sciter.com), it is a lightweight clone of the original [Image Shrinker](https://github.com/stefansl/image-shrinker) for Windows and, hopefully, Linux & Mac.
 
 <h1 align="center">
-<img src="lite/preview.gif" alt="screenshot" width="280"/></a><br/><br/>
+  <img src="preview.gif" alt="screenshot" width="280"/></a><br/><br/>
 </h1>
 
-## Usage
+
+## Features 
+
+- [x] PNG compression
+- [x] JPG compression
+- [ ] SVG compression
+- [ ] GIF compression
+  
+## Building 
 
 <details>
-  <summary><b>GUI Only</b> (No Compression Functionality)</summary>
+  <summary><b>Windows</b></summary>
 
-  Download the Sciter binary appropriate for your operating system here:
+1. Install [Rust](https://www.rust-lang.org/tools/install).
 
-  - [Windows](https://github.com/c-smile/sciter-sdk/blob/master/bin.win/x32/scapp.exe)
-  - [Mac](https://github.com/c-smile/sciter-sdk/tree/master/bin.osx)
-  - [Linux](https://github.com/c-smile/sciter-sdk/blob/master/bin.lnx/x64/scapp)
+2. Download[packfolder.exe](https://github.com/c-smile/sciter-sdk/blob/master/bin.win/packfolder.exe).
 
-  Then run it inside the [lite](lite) folder.
+3. Add it to your `PATH`.
+  
+4. Download [sciter.dll](https://github.com/c-smile/sciter-sdk/blob/master/bin.win).
+
+5. Add it to your `PATH`.  Or, place it in this folder.
+   
+6. Run `cargo run` to build and execute from the command line.  Or, `cargo build --release` to create an optimized executable in `target/release`.
 </details>
 
 <details>
-  <summary>(Partially) <b>Functional</b></summary>
-  
-  Download the Sciter library appropriate for your operating system here:
+  <summary><b>Mac</b></summary>
 
-  - [Windows](https://github.com/c-smile/sciter-sdk/blob/master/bin.win/x32/sciter.dll)
-  - [Mac](https://github.com/c-smile/sciter-sdk/blob/master/bin.osx/sciter-osx-64.dylib)
-  - [Linux](https://github.com/c-smile/sciter-sdk/blob/master/bin.lnx/x64/libsciter-gtk.so)
+  Pending ...
+</details>
 
-  Place it inside the [lite](lite) folder (or add it to your `PATH` environment variable), and run `cargo build --release` from a console window there.
+<details>
+  <summary><b>Mac</b></summary>
 
-  Then find the resulting executable in the `target` folder, and run it directly.
-
-  Running it from git bash will result in the file drag-and-drop functionality not working.  In my experience, anyway.
-
-  **This does assume you have the Rust toolchain installed.**
+  Pending ...
 </details>
 
 ## Credits

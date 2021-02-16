@@ -3,13 +3,13 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Image Shrinker</title>
-    <link href="styles.css" rel="stylesheet">
+    <title>Image Shrinker Lite</title>
+    <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/toggle.css" rel="stylesheet">
     <link href="assets/css/x.css" rel="stylesheet">
     <link href="assets/css/results.css" rel="stylesheet">
     <link href="assets/css/copyright.css" rel="stylesheet">
-    <script src="script.tis" type="text/tiscript"></script>
+    <script src="assets/tis/main.tis" type="text/tiscript"></script>
     <script src="assets/tis/moveable_view.tis" type="text/tiscript"></script>
     <script src="assets/tis/drag_and_drop.tis" type="text/tiscript"></script>
     <script src="assets/tis/results.tis" type="text/tiscript"></script>
@@ -27,7 +27,7 @@
     </div>
     <div #dropzone accept-drop="*.png;*.jpg;*.jpeg;*.svg;*.gif">
       <h1>Drag files here</h1>
-      <span>only SVG, JPG, GIF and PNG allowed</span>
+      <span>only <strike>SVG</strike>, JPG, <strike>GIF</strike> and PNG allowed</span>
     </div>
     <div #results></div>
     <div #ellipses>
@@ -51,7 +51,7 @@
             <span>
               <div .txt>Enable notifications</div>
               <div .toggle>
-                <button|toggle checked disabled/>
+                <button|toggle disabled/>
               </div>
             </span>
           </div>
