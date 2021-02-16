@@ -37,7 +37,7 @@ Image Shrinker Lite is a tool to minify images and graphics. Built with web tech
 </details>
 
 <details>
-  <summary><b>Mac</b></summary>
+  <summary><b>Linux</b></summary>
 
   Pending ...
 </details>
